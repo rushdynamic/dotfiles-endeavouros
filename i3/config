@@ -190,9 +190,16 @@ bar {
 	position top
 	tray_output none
 	status_command /home/rushdynamic/Scripts/bumblebee-status/bumblebee-status -m\
+        title \
+        git \
+        spotify \
         cpu \
         memory \
-        time pasink pasource -p time.format="%H:%M" \
+        nic \
+        battery-upower \
+        spacer \
+        pasink pasource \
+        datetime \
         -t iceberg-rainbow
 }
 
