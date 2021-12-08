@@ -7,6 +7,10 @@
 
 [[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
 
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 _set_my_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
@@ -14,7 +18,7 @@ _set_my_PS1() {
         if [ -n "$iso_version" ] ; then
             local prefix="eos-"
             local iso_info="$prefix$iso_version"
-	    PS1="[\[\e[36m\]\w\[\e[m\]] \[\e[33m\]\u\[\e[m\] -> "
+          PS1="[\[\e[36m\]\w\[\e[m\]]\[\033[00;32m\]\$(git_branch) \[\e[33m\]\u\[\e[m\] -> "
         fi
     fi
 }
@@ -187,4 +191,6 @@ _Pacdiff() {
 # alias pacdiff=_Pacdiff
 ################################################################################
 fm6000 -dogbert -g 8 -w 20
-export PS1="[\[\e[36m\]\w\[\e[m\]] \[\e[33m\]\u\[\e[m\] -> "
+# export PS1="[\[\e[36m\]\w\[\e[m\]] \[\e[33m\]\u\[\e[m\] -> "
+export PS1="[\[\e[36m\]\w\[\e[m\]]\[\033[00;32m\]\$(git_branch) \[\e[33m\]\u\[\e[m\] -> "
+export GIT_ASKPASS='/usr/bin/ksshaskpass'
