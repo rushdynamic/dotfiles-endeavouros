@@ -57,7 +57,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -231,3 +231,8 @@ for_window [window_role="task_dialog"]                  floating enable
 for_window [window_role="Preferences"]                  floating enable
 for_window [window_type="dialog"]                       floating enable 
 for_window [window_type="menu"]                         floating enable
+
+exec --no-startup-id picom --config ~/.config/picom/picom.conf --experimental-backends
+
+# send notification using dunst
+exec notify-send "i3-gaps" "Finished loading i3 config" -h string:bgcolor:#212121 -h string:fgcolor:#fcfcfc -h string:frcolor:#44ff44
