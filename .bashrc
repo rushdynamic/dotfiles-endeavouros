@@ -38,6 +38,14 @@ ShowInstallerIsoInfo() {
 alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
+alias upoff="sudo pacman -Syyu --noconfirm && systemctl suspend" # update and suspend
+alias soff="systemctl suspend" # suspend
+
+# cdd function for cd {path} && ls
+cdd() {
+    cd "$1"
+    ls
+}
 
 [[ "$(whoami)" = "root" ]] && return
 
@@ -190,7 +198,11 @@ _Pacdiff() {
 # alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
 # alias pacdiff=_Pacdiff
 ################################################################################
+export PATH="${PATH}:$HOME/.local/bin"
 fm6000 -dogbert -g 8 -w 20
 # export PS1="[\[\e[36m\]\w\[\e[m\]] \[\e[33m\]\u\[\e[m\] -> "
 export PS1="[\[\e[36m\]\w\[\e[m\]]\[\033[00;32m\]\$(git_branch) \[\e[33m\]\u\[\e[m\] -> "
 export GIT_ASKPASS='/usr/bin/ksshaskpass'
+export TERM=rxvt-unicode-256color
+export TERMINAL=urxvt
+export PATH="${PATH}:$HOME/Kafka/kafka_2.13-3.0.0/bin"
